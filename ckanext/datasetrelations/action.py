@@ -62,8 +62,7 @@ def package_update(context, data_dict):
     for rel in diff:
         _delete_package_relationship(subject=rel, object=pkg_id)
 
-    return l.action.update.package_update(context, data_dict)
-
+    return data_dict
 
 @l.side_effect_free
 def dataset_relationships_show(context, data_dict):
