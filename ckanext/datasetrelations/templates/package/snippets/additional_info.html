@@ -1,12 +1,9 @@
 {% ckan_extends %}
 
 {% block extras scoped %}
-{{super()}}
 {% block package_relationships %}
 {% set relations = h.get_package_relations(pkg_dict.id) %}
     {% if relations %}
-
-
         <table class="table table-striped table-bordered table-condensed">
             <h3>{{ _('Relationships') }}</h3>
             <thead>
