@@ -4,11 +4,13 @@
 {{super()}}
 {% set relations = h.get_package_relations(pkg_dict.id) %}
     {% if relations %}
-            <tr>
-                <th scope="col">{{ _('Related dataset') }}</th>
+        <tr>
+            <th scope="col">{{ _('Related dataset') }}</th>
+            <td>
             {% for rel in relations %}
-                <td><a href="{{ h.url_for(controller='package', action='read', id=rel.subject) }}">{{ h.extra_package_output(rel.subject) }}</a></td>
-            </tr>
+                <a href="{{ h.url_for(controller='package', action='read', id=rel.subject) }}">{{ h.extra_package_output(rel.subject) }}</a>
             {% endfor %}
+            </td>
+        </tr>
     {% endif %}
 {% endblock %}
