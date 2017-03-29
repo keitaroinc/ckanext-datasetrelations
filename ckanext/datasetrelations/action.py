@@ -56,11 +56,13 @@ def package_update(context, data_dict):
             continue
         try:
             _create_package_relationship(subject=rel, object=pkg_id)
+            _create_package_relationship(subject=pkg_id, object=rel)
         except Exception as e:
             log.error(str(e))
 
     for rel in diff:
         _delete_package_relationship(subject=rel, object=pkg_id)
+        _delete_package_relationship(subject=pkg_id, object=rel)
 
     return data_dict
 
