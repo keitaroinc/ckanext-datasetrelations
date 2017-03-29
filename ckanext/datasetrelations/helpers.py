@@ -26,7 +26,7 @@ def datasetrelations_get_user_available_datasets(user):
     return out
 
 
-def datasetrelations_get_dataset_relations(id):
+def datasetrelations_get_dataset_relations(id, return_obj=False):
     out = []
     if id in (None, '', Undefined):
         return out
@@ -34,7 +34,10 @@ def datasetrelations_get_dataset_relations(id):
     datasets = l.get_action('dataset_relationships_show')({}, {'id': id})
     for _ in datasets:
         obj = m.Package.get(_['subject'])
-        out.append(obj.id)
+        if return_obj:
+            out.append(obj.as_dict())
+        else:
+            out.append(obj.id)
     return out
 
 
