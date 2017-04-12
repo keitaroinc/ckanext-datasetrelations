@@ -1,0 +1,26 @@
+{% set label = _('Related datasets') %}
+{% if related_label %}
+  {% set label = related_label %}
+{% endif %}
+
+<div class="control-group control-full">
+    {% if c.action == 'edit' %}
+        {% set selected_datasets = h.get_dataset_relations(c.pkg_dict['id']) %}
+    {% endif %}
+    <label class="control-label" for="field-related-datasets">{{ label }}</label>
+    <div class="controls">
+        <select class="js-example-placeholder-multiple field-related-datasets" id='field-related-datasets' name="related-datasets" multiple="multiple" style="width: 75%">
+            {% for item in h.get_user_available_datasets(c.user) %}
+                {% if c.action == 'edit' and item['value'] != c.pkg_dict['id'] %}
+                <option value="{{item['value']}}" {% if item['value'] in selected_datasets %} selected="selected" {% endif %}>
+                    {{item['name']}}
+                </option>
+                {% elif item['value'] != c.pkg_dict['id']%}
+                <option value="{{item['value']}}">
+                    {{item['name']}}
+                </option>
+                {% endif %}
+            {% endfor %}
+        </select>
+    </div>
+</div>
