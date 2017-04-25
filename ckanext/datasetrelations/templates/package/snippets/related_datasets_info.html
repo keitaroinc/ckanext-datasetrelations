@@ -1,0 +1,15 @@
+{% set relations = h.get_package_relations(package_id) %}
+{% if relations %}
+    {% set label = _('Related dataset') %}
+    {% if related_label %}
+        {% set label = related_label %}
+    {% endif %}
+    <tr>
+        <th scope="col">{{ label }}</th>
+        <td>
+        {% for rel in relations %}
+            <a href="{{ h.url_for(controller='package', action='read', id=rel.subject) }}">{{ h.extra_package_output(rel.subject) }}</a>
+        {% endfor %}
+        </td>
+    </tr>
+{% endif %}
