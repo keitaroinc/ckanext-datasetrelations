@@ -1,5 +1,5 @@
-<div class="control-group control-full">
-	<label class="control-label" for="field-related-datasets">Related Datasets</label>
+<div class="form-group control-full">
+	<label class="form-control" for="field-related-datasets">Related Datasets</label>
 	<div class="controls">
         {% set selected = {'value': False} %}
         {% if data.get('related-datasets') is not none %}
@@ -7,7 +7,7 @@
             {% endif %}
         {% endif %}
         {% set selected_parent = selected['value'] %}
-        <select class="js-example-placeholder-multiple field-related-datasets" id='field-related-datasets' name="related-datasets" multiple="multiple" style="width: 75%">
+        <select class="js-example-placeholder-multiple field-related-datasets" id='field-related-datasets' name="related-datasets" multiple="multiple">
             {% for group in h.get_allowable_datasets(None) %}
                 <option value="{{group}}" {% if selected_parent %}{% if group in selected_parent %} selected="selected" {% endif %}{% endif %}>
                     {{group}}
